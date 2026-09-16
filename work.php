@@ -50,8 +50,14 @@ $visible = array_filter($projects, function ($project) use ($active) {
             <div class="grid grid-3">
                 <?php foreach ($visible as $projectIndex => $project): ?>
                     <article class="project reveal">
-                        <div class="project-thumb" aria-hidden="true">
-                            <span><?= e(mb_substr($project['title'], 0, 1)) ?></span>
+                        <div class="project-thumb">
+                            <?php if (!empty($project['image'])): ?>
+                                <img src="<?= e($project['image']) ?>"
+                                    alt="پوستر پروژه <?= e($project['title']) ?>"
+                                    loading="lazy" decoding="async">
+                            <?php else: ?>
+                                <span aria-hidden="true"><?= e(mb_substr($project['title'], 0, 1)) ?></span>
+                            <?php endif; ?>
                             <small><?= e($project['status'] ?? 'پروژه') ?></small>
                         </div>
                         <div class="project-body">
