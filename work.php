@@ -67,6 +67,12 @@ $visible = array_filter($projects, function ($project) use ($active) {
                                 <span class="project-index">#<?= str_pad((string) ($projectIndex + 1), 2, '0', STR_PAD_LEFT) ?></span>
                             </div>
                             <p><?= e(t($project['desc'])) ?></p>
+                            <?php if (!empty($project['note'])): ?>
+                                <div class="project-note">
+                                    <span class="project-note-label"><?= e(lang('project_note_label')) ?></span>
+                                    <p><?= e(t($project['note'])) ?></p>
+                                </div>
+                            <?php endif; ?>
                             <ul class="tags">
                                 <?php foreach ($project['tags'] as $tag): ?>
                                     <li><?= e($tag) ?></li>

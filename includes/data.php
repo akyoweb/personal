@@ -70,23 +70,137 @@ $content_strings = [
     ],
 ];
 
-/** کلیدهای مهارت + درصد */
+/**
+ * مسیر یادگیری — به‌جای نوار درصد.
+ *
+ * چرا درصد حذف شد؟ چون عدد ۷۰٪ هیچ معنایی ندارد؛ نسبت به چه کسی؟
+ * این ساختار صادقانه‌تر است: چه بلدم، روی چه چیزی مسلط‌ترم،
+ * و همین حالا مشغول یادگیری چه هستم.
+ *
+ * level: 'solid' (روی آن مسلطم) | 'working' (کار می‌کنم) | 'learning' (یاد می‌گیرم)
+ */
 $skills = [
-    'PHP' => 70,
-    'JavaScript' => 65,
-    'MySQL' => 70,
-    'CSS / SCSS' => 80,
-    'Bootstrap' => 60,
-    'Git' => 65,
+    [
+        'name' => 'PHP',
+        'level' => 'solid',
+        'note' => [
+            'fa' => 'منطق سمت سرور، فرم‌ها، نشست‌ها و ساختاردهی پروژه بدون فریم‌ورک.',
+            'en' => 'Server-side logic, forms, sessions and structuring a project without a framework.',
+        ],
+    ],
+    [
+        'name' => 'HTML / CSS',
+        'level' => 'solid',
+        'note' => [
+            'fa' => 'چیدمان واکنش‌گرا، متغیرهای CSS، تم روشن و تاریک، دسترس‌پذیری پایه.',
+            'en' => 'Responsive layout, CSS variables, light and dark themes, basic accessibility.',
+        ],
+    ],
+    [
+        'name' => 'JavaScript',
+        'level' => 'working',
+        'note' => [
+            'fa' => 'DOM، رویدادها، IntersectionObserver. هنوز با ماژول‌ها و ابزار بیلد راحت نیستم.',
+            'en' => 'DOM, events, IntersectionObserver. Still not comfortable with modules and build tooling.',
+        ],
+    ],
+    [
+        'name' => 'MySQL',
+        'level' => 'working',
+        'note' => [
+            'fa' => 'طراحی جدول، JOIN و کوئری‌های روزمره. در حال یادگیری PDO و prepared statement.',
+            'en' => 'Table design, JOINs and everyday queries. Currently learning PDO and prepared statements.',
+        ],
+    ],
+    [
+        'name' => 'Git',
+        'level' => 'working',
+        'note' => [
+            'fa' => 'کامیت، برنچ و پوش. تاریخچه را بازنویسی کردم که تجربه گرانی بود.',
+            'en' => 'Commits, branches and pushing. Rewriting history once cost me an evening.',
+        ],
+    ],
+    [
+        'name' => 'Laravel',
+        'level' => 'learning',
+        'note' => [
+            'fa' => 'شروع کردم؛ فعلاً می‌فهمم routing و Eloquent چه کار می‌کنند، ولی هنوز پروژه ننوشته‌ام.',
+            'en' => 'Started recently. I understand what routing and Eloquent do, but I have not shipped a project yet.',
+        ],
+    ],
 ];
 
-/** نام مهارت‌ها به تفکیک زبان */
-$skill_labels = [
-    'fa' => [
-        'Git' => 'گیت و گیت‌هاب',
+/**
+ * «چطور فکر می‌کنم» — تصمیم‌های فنی واقعی با دلیل.
+ * این بخش قابل کپی نیست چون از تجربه خودم آمده.
+ */
+$decisions = [
+    [
+        'title' => [
+            'fa' => 'چرا این سایت بدون فریم‌ورک است',
+            'en' => 'Why this site has no framework',
+        ],
+        'body' => [
+            'fa' => 'می‌خواستم یاد بگیرم PHP خودش چطور کار می‌کند، نه اینکه Laravel چه دکمه‌ای دارد. بدون فریم‌ورک مجبور شدم خودم با نشست، توکن CSRF و مسیریابی درگیر شوم. حالا وقتی جایی از Laravel استفاده می‌کنم، می‌فهمم پشت صحنه چه خبر است.',
+            'en' => 'I wanted to learn how PHP itself works, not which button Laravel offers. Without a framework I had to deal with sessions, CSRF tokens and routing myself. Now when I use Laravel somewhere, I understand what is happening behind it.',
+        ],
     ],
-    'en' => [
-        'Git' => 'Git & GitHub',
+    [
+        'title' => [
+            'fa' => 'چرا متن‌ها در data.php هستند',
+            'en' => 'Why the content lives in data.php',
+        ],
+        'body' => [
+            'fa' => 'اول متن‌ها را داخل HTML نوشتم. بعد که خواستم همان جمله را در دو جا استفاده کنم، مجبور شدم دو جا ویرایشش کنم و یکی را فراموش کردم. حالا محتوا در یک آرایه است و قالب فقط آن را نمایش می‌دهد. این تصمیم بعداً اضافه کردن زبان انگلیسی را هم ساده کرد.',
+            'en' => 'I wrote the copy straight into the HTML at first. Then I needed the same sentence in two places, edited both, and forgot one. Now the content sits in one array and the template only renders it. That decision also made adding English much easier later.',
+        ],
+    ],
+    [
+        'title' => [
+            'fa' => 'چرا پیام‌ها بیرون از پوشه وب ذخیره می‌شوند',
+            'en' => 'Why messages are stored outside the web root',
+        ],
+        'body' => [
+            'fa' => 'اول پیام‌ها را در پوشه storage داخل سایت ذخیره کردم. بعد به این فکر افتادم که اگر تنظیمات وب‌سرور یک روز عوض شود، کسی می‌تواند آدرس فایل را بزند و همه پیام‌ها را بخواند. مسیر را به بیرون از پوشه وب منتقل کردم. با یک تغییر کوچک، یک ریسک واقعی حذف شد.',
+            'en' => 'I stored messages in a storage folder inside the site at first. Then I realised that if the web server config ever changed, anyone could hit the file URL and read every message. I moved the path outside the web root. A small change removed a real risk.',
+        ],
+    ],
+];
+
+/**
+ * «اشتباه‌هایی که وقت گرفت» — بخشی که هیچ‌کس کپی نمی‌کند.
+ * صادقانه بودنش از تمیز بودنش مهم‌تر است.
+ */
+$mistakes = [
+    [
+        'title' => [
+            'fa' => 'یک متغیر با یک اسم، دو جا',
+            'en' => 'One variable name, two places',
+        ],
+        'body' => [
+            'fa' => 'در فایل زبان و فایل محتوا هر دو از متغیر `$strings` استفاده کرده بودم. دومی اولی را پاک می‌کرد و صفحه به‌جای «مهارت‌ها»، خودِ کلمه `skills_heading` را نشان می‌داد. چون خطای PHP نمی‌داد، اول فکر کردم مشکل از کش مرورگر است. درس: وقتی متن خامی مثل اسم کلید می‌بینی، احتمالاً متغیر جایی بازنویسی شده.',
+            'en' => 'Both the language file and the content file used a variable called `$strings`. The second wiped the first, so the page printed the literal key `skills_heading` instead of "Skills". Because PHP raised no error, I first blamed the browser cache. Lesson: when you see a raw key instead of text, a variable is probably being overwritten somewhere.',
+        ],
+    ],
+    [
+        'title' => [
+            'fa' => 'دکمه‌ای که خودش را لود می‌کرد',
+            'en' => 'A button that reloaded itself',
+        ],
+        'body' => [
+            'fa' => 'دکمه تغییر زبان روی صفحه فارسی به `?lang=fa` لینک می‌داد — یعنی همان زبانی که کاربر در آن بود. تابعی که آدرس می‌ساخت، همیشه زبان فعلی را اضافه می‌کرد. چون خطایی دیده نمی‌شد، مدتی فکر کردم مشکل از جاوااسکریپت است. راه‌حل: یک تابع جدا که آدرس را برای زبان مقصد بسازد، نه زبان فعلی.',
+            'en' => 'On the Persian page the language button linked to `?lang=fa` — the language the visitor was already in. The helper that built the URL always appended the current language. With no error to go on, I spent a while suspecting JavaScript. The fix was a separate helper that builds the URL for the target language instead of the current one.',
+        ],
+    ],
+    [
+        'title' => [
+            'fa' => 'یک دایره تزئینی که چیدمان را به‌هم ریخت',
+            'en' => 'A decorative circle that broke the layout',
+        ],
+        'body' => [
+            'fa' => 'یک دایره محو پس‌زمینه با `right: -180px` گذاشته بودم تا گوشه هیرو را پر کند. در گوشی خاصی وقتی زبان عوض می‌شد، کل صفحه از حالت ریسپانسیو درمی‌آمد. علت این بود که آن عنصر ۱۸۰ پیکسل از عرض صفحه بیرون می‌زد و مرورگر بعد از رندر مجدد، چیدمان را جابه‌جا می‌کرد. با `inset-inline-end` و محدود کردن اندازه به `70vw` حل شد — هم برای فارسی، هم انگلیسی.',
+            'en' => 'I placed a faded background circle with `right: -180px` to fill the hero corner. On one particular phone, switching language threw the whole page out of its responsive layout. The element was sticking 180px past the viewport width, and after a re-render the browser shifted the layout. Constraining it with `inset-inline-end` and a `70vw` cap fixed it for both Persian and English.',
+        ],
     ],
 ];
 
@@ -140,6 +254,10 @@ $projects = [
             'fa' => 'پروژه تمرینی',
             'en' => 'Practice project',
         ],
+        'note' => [
+            'fa' => 'سخت‌ترین بخش بازیابی رمز عبور بود: باید توکنی می‌ساختم که فقط یک بار کار کند و بعد از چند دقیقه منقضی شود. اول توکن را در متن ساده ذخیره کردم؛ بعد فهمیدم اگر کسی دیتابیس را ببیند، می‌تواند وارد هر حسابی شود. تغییرش دادم به hash.',
+            'en' => 'The hardest part was password recovery: I needed a token that worked once and expired after a few minutes. I stored it in plain text at first, then realised anyone reading the database could log into any account. I switched it to a hash.',
+        ],
     ],
     [
         'title' => [
@@ -156,6 +274,10 @@ $projects = [
         'status' => [
             'fa' => 'در حال توسعه',
             'en' => 'In progress',
+        ],
+        'note' => [
+            'fa' => 'بحث اصلی این پروژه جست‌وجو بود. اول با LIKE ساده نوشتم؛ با چند هزار آگهی کند شد. هنوز به ایندکس‌گذاری درست نرسیده‌ام و همین باعث شده پروژه باز بماند.',
+            'en' => 'Search is the open question here. I started with a plain LIKE query; at a few thousand ads it got slow. I have not landed on the right indexing yet, which is part of why this one is still open.',
         ],
     ],
     [
@@ -174,6 +296,10 @@ $projects = [
             'fa' => 'نمونه اولیه',
             'en' => 'Prototype',
         ],
+        'note' => [
+            'fa' => 'هدف این بود که داشبورد به هر ردیابی وصل شود، نه فقط یک برند. چون هر ردیاب قالب داده خودش را دارد، یک لایه تبدیل نوشتم. این جداسازی باعث شد تعویض ردیاب فقط تغییر یک فایل باشد.',
+            'en' => 'The goal was a dashboard that connects to any tracker, not one brand. Since each tracker has its own data shape, I wrote a conversion layer. That separation means swapping a tracker is a one-file change.',
+        ],
     ],
     [
         'title' => [
@@ -191,6 +317,10 @@ $projects = [
             'fa' => 'پروژه ساده تمرینی',
             'en' => 'Simple practice project',
         ],
+        'note' => [
+            'fa' => 'برای یادگیری DOM نوشتم. ساده بود، ولی همان جا فهمیدم چرا باید وضعیت آزمون را در یک آبجکت نگه دارم نه در چند متغیر جدا؛ با متغیر جدا، شماره سوال و نمره از هم جدا می‌افتادند.',
+            'en' => 'I wrote it to practise the DOM. It was simple, but it taught me why quiz state belongs in one object rather than several loose variables — with loose variables the question index and score drifted apart.',
+        ],
     ],
     [
         'title' => [
@@ -207,6 +337,10 @@ $projects = [
         'status' => [
             'fa' => 'پروژه ساده تمرینی',
             'en' => 'Simple practice project',
+        ],
+        'note' => [
+            'fa' => 'اولین تجربه کار با API بیرونی. یاد گرفتم که اینترنت کاربر همیشه وصل نیست: اگر درخواست شکست بخورد و حالت خطا نداشته باشم، صفحه بی‌صدا خالی می‌ماند. حالا همیشه حالت بارگذاری و خطا می‌گذارم.',
+            'en' => 'My first time consuming an external API. I learned that the visitor is not always online: if the request fails and there is no error state, the page just sits empty with no explanation. Now I always build loading and error states.',
         ],
     ],
 ];
@@ -284,14 +418,6 @@ function fill_profile($text)
 function t_prose($key, array $vars = [])
 {
     return fill_profile(t_str($key, $vars));
-}
-
-/** نام مهارت در زبان جاری */
-function skill_label($key)
-{
-    global $skill_labels, $lang;
-
-    return $skill_labels[$lang][$key] ?? $key;
 }
 
 /* مقادیر آماده برای استفاده در صفحه‌ها (به زبان جاری) */

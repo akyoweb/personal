@@ -82,20 +82,59 @@ include __DIR__ . '/includes/header.php';
             <a class="text-link" href="<?= e(lang_url('about.php')) ?>"><?= e(lang('skills_more')) ?> ←</a>
         </header>
 
-        <ul class="skills">
-            <?php foreach ($skills as $key => $level): ?>
-                <li class="skill" data-level="<?= (int) $level ?>">
-                    <div class="skill-top">
-                        <span class="skill-name"><?= e(skill_label($key)) ?></span>
-                        <span class="skill-value"><?= (int) $level ?>٪</span>
-                    </div>
-                    <div class="skill-bar" role="img"
-                         aria-label="<?= e(lang('skills_aria', ['label' => skill_label($key), 'level' => (int) $level])) ?>">
-                        <span style="width: <?= (int) $level ?>%"></span>
+        <ul class="path">
+            <?php foreach ($skills as $index => $skill): ?>
+                <li class="path-item level-<?= e($skill['level']) ?> reveal">
+                    <span class="path-index"><?= str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT) ?></span>
+                    <div class="path-body">
+                        <div class="path-top">
+                            <h3><?= e($skill['name']) ?></h3>
+                            <span class="path-level"><?= e(lang('level_' . $skill['level'])) ?></span>
+                        </div>
+                        <p><?= e(t($skill['note'])) ?></p>
                     </div>
                 </li>
             <?php endforeach; ?>
         </ul>
+    </div>
+</section>
+
+<section class="section">
+    <div class="wrap">
+        <header class="section-head">
+            <p class="eyebrow"><?= e(lang('decisions_eyebrow')) ?></p>
+            <h2><?= e(lang('decisions_heading')) ?></h2>
+            <p><?= e(lang('decisions_lead')) ?></p>
+        </header>
+
+        <div class="decisions">
+            <?php foreach ($decisions as $index => $decision): ?>
+                <article class="decision reveal">
+                    <span class="decision-index"><?= str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT) ?></span>
+                    <h3><?= e(t($decision['title'])) ?></h3>
+                    <p><?= e(t($decision['body'])) ?></p>
+                </article>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="wrap">
+        <header class="section-head">
+            <p class="eyebrow"><?= e(lang('mistakes_eyebrow')) ?></p>
+            <h2><?= e(lang('mistakes_heading')) ?></h2>
+            <p><?= e(lang('mistakes_lead')) ?></p>
+        </header>
+
+        <ol class="log">
+            <?php foreach ($mistakes as $mistake): ?>
+                <li class="log-item reveal">
+                    <h3><?= e(t($mistake['title'])) ?></h3>
+                    <p><?= e(t($mistake['body'])) ?></p>
+                </li>
+            <?php endforeach; ?>
+        </ol>
     </div>
 </section>
 

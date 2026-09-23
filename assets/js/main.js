@@ -46,39 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  /* --- نوار مهارت‌ها: پر شدن با دیدن بخش --- */
-  var skills = document.querySelectorAll(".skill");
-
-  var fillSkill = function (el) {
-    var level = parseInt(el.dataset.level, 10) || 0;
-    var bar = el.querySelector(".skill-bar span");
-    if (bar) {
-      bar.style.width = level + "%";
-    }
-  };
-
-  if (skills.length) {
-    if ("IntersectionObserver" in window) {
-      var observer = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              fillSkill(entry.target);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.35 }
-      );
-
-      skills.forEach(function (skill) {
-        observer.observe(skill);
-      });
-    } else {
-      skills.forEach(fillSkill);
-    }
-  }
-
   /* --- انیمیشن ورود کارت‌ها --- */
   if ("IntersectionObserver" in window) {
     var revealObserver = new IntersectionObserver(function (entries) {

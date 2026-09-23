@@ -12,7 +12,13 @@
   --bg-soft:    #f3f4f2;
   --accent: #2f6f5e;
   --accent-dk: #245648;
-  --radius: 10px;
+
+  /*
+   * امضای بصری: گوشه‌ها تقریباً تیز هستند (۳px نه ۱۰px).
+   * تصمیم عمدی است — گردی زیاد حس «قالب آماده» می‌دهد،
+   * گوشه تیز حس فنی و جدی‌تر. همه کارت‌ها از همین یک متغیر تغذیه می‌شوند.
+   */
+  --radius: 3px;
   --wrap: 1080px;
   --shadow:
     0 1px 2px rgba(20, 24, 30, 0.05), 0 8px 24px -18px rgba(20, 24, 30, 0.35);
@@ -380,41 +386,7 @@ p {
   font-size: 0.93rem;
 }
 
-/* مهارت‌ها */
-.skills {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 18px;
-}
-
-.skill-top {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  margin-bottom: 7px;
-}
-
-.skill-value {
-  color: var(--ink-faint);
-}
-
-.skill-bar {
-  height: 7px;
-  background: #e6e8e6;
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.skill-bar span {
-  display: block;
-  height: 100%;
-  width: 0;
-  border-radius: 999px;
-  background: var(--accent);
-  transition: width 1s cubic-bezier(0.2, 0.7, 0.3, 1);
-}
+/* مهارت‌ها: نوار درصد حذف شد؛ استایل جدید در بخش «مسیر یادگیری» پایین فایل است */
 
 /* فراخوان */
 .cta {
@@ -1022,31 +994,15 @@ body { overflow-x: hidden; }
 main { min-height: calc(100vh - 180px); }
 .hero { position: relative; isolation: isolate; }
 /*
- * دایره تزئینی پس‌زمینه.
- * نکته مهم: با right:-180px این عنصر ۱۸۰ پیکسل از لبه صفحه بیرون می‌زند و
- * در برخی گوشی‌ها (A55) اسکرول افقی ایجاد می‌کند؛ در RTL هم چون جهت
- * محاسبه آفست فرق دارد، چیدمان را به‌هم می‌ریزد.
- * پس با inset-inline آن را به خود هیرو مقید می‌کنیم و اندازه‌اش را
- * نسبت به عرض صفحه محدود می‌کنیم تا هرگز از کادر بیرون نزند.
+ * لکه دایره‌ای محو قبلی حذف شد.
+ * دو دلیل: کلیشه‌ای بود، و با right:-180px در بعضی گوشی‌ها (A55)
+ * اسکرول افقی می‌ساخت و چیدمان را به‌هم می‌ریخت.
+ * جایش یک شبکه خطی نازک آمده که پایین‌تر در فایل تعریف شده است.
  */
-.hero::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  width: min(420px, 70vw);
-  height: min(420px, 70vw);
-  top: -120px;
-  inset-inline-end: -8%;
-  border-radius: 50%;
-  background: rgba(47, 111, 94, .08);
-  filter: blur(2px);
-  pointer-events: none;
-}
 .status-dot { display: inline-block; width: 8px; height: 8px; margin-left: 7px; border-radius: 50%; background: #43a87e; box-shadow: 0 0 0 5px rgba(67,168,126,.12); }
 .hero-meta { display: flex; flex-wrap: wrap; gap: 14px; color: var(--ink-faint); font-size: .82rem; }
 .hero-meta span::first-letter { color: var(--accent); }
 .hero-card { position: relative; overflow: hidden; }
-.hero-card::after { content: "</>"; position: absolute; left: 20px; bottom: 12px; color: rgba(47,111,94,.1); font: 700 3rem/1 monospace; transform: rotate(-8deg); }
 .section-head-row { display: flex; justify-content: space-between; align-items: end; gap: 24px; max-width: none; }
 .section-head-row .eyebrow { margin-bottom: 7px; }
 .text-link { white-space: nowrap; font-weight: 700; }
@@ -1216,8 +1172,7 @@ html[dir="ltr"] body {
   font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
 }
 
-/* در حالت انگلیسی اعداد و درصدها لاتین نمایش داده می‌شوند */
-html[dir="ltr"] .skill-value,
+/* در حالت انگلیسی اعداد لاتین نمایش داده می‌شوند */
 html[dir="ltr"] .project-index {
   font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
@@ -1315,4 +1270,344 @@ body {
   .brand-text {
     display: none;
   }
+}
+
+/* ==========================================================================
+   مسیر یادگیری — جایگزین نوار درصد
+   --------------------------------------------------------------------------
+   چرا: عدد «۷۰٪» معنایی ندارد. این ساختار می‌گوید روی چه چیزی راحتم،
+   روی چه چیزی دارم کار می‌کنم، و چه چیزی را تازه شروع کرده‌ام.
+   ========================================================================== */
+
+.path {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.path-item {
+  display: flex;
+  gap: 16px;
+  padding: 22px 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* خط عمودی جداکننده بین دو ستون */
+.path-item:nth-child(odd) {
+  padding-inline-end: 28px;
+  border-inline-end: 1px solid var(--line);
+}
+
+.path-item:nth-child(even) {
+  padding-inline-start: 28px;
+}
+
+.path-index {
+  flex: 0 0 auto;
+  font: 700 0.72rem/1.6 ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color: var(--ink-faint);
+  letter-spacing: 0.06em;
+}
+
+.path-body {
+  min-width: 0;
+}
+
+.path-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.path-top h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* برچسب سطح — رنگش وضعیت را نشان می‌دهد، نه یک عدد ساختگی */
+.path-level {
+  flex: 0 0 auto;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.level-solid .path-level {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.level-working .path-level {
+  border-color: var(--ink-faint);
+  color: var(--ink-soft);
+}
+
+.level-learning .path-level {
+  border-style: dashed;
+  color: var(--ink-faint);
+}
+
+.path-item p {
+  margin: 8px 0 0;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+/* ==========================================================================
+   «چطور فکر می‌کنم» — تصمیم‌های فنی
+   ========================================================================== */
+
+.decisions {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.decision {
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 20px;
+}
+
+.decision-index {
+  font: 700 0.8rem/1.8 ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+.decision h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+}
+
+.decision p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+  max-width: 68ch;
+}
+
+/* ==========================================================================
+   دفتر اشتباه‌ها
+   ========================================================================== */
+
+.log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.log-item {
+  position: relative;
+  padding: 24px 22px;
+  background: var(--surface, #fff);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* نوار رنگی بالای هر کارت، به‌جای آیکون تزئینی */
+.log-item::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 3px;
+  background: var(--accent);
+  opacity: 0.55;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.log-item h3 {
+  margin: 0 0 10px;
+  font-size: 0.98rem;
+}
+
+.log-item p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.8;
+}
+
+/* ==========================================================================
+   یادداشت پروژه — «سخت‌ترین بخش»
+   ========================================================================== */
+
+.project-note {
+  margin: 14px 0 4px;
+  padding: 14px 16px;
+  border-inline-start: 2px solid var(--accent);
+  background: var(--bg-soft, #f3f4f2);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+html[dir="rtl"] .project-note {
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+
+.project-note-label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.project-note p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+
+html[data-theme="dark"] .project-note {
+  background: rgba(102, 199, 165, 0.07);
+}
+
+/* ==========================================================================
+   واکنش‌گرا برای بخش‌های جدید
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .log {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .path {
+    grid-template-columns: 1fr;
+  }
+
+  /* در موبایل جداکننده ستونی معنا ندارد */
+  .path-item:nth-child(odd) {
+    padding-inline-end: 4px;
+    border-inline-end: 0;
+  }
+
+  .path-item:nth-child(even) {
+    padding-inline-start: 4px;
+  }
+
+  .decision {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 22px 0;
+  }
+
+  .log-item {
+    padding: 20px 18px;
+  }
+}
+
+/* ==========================================================================
+   امضای بصری
+   --------------------------------------------------------------------------
+   یک تصمیم که در کل سایت تکرار می‌شود: شماره‌گذاری مجله‌ای بخش‌ها.
+   این چیزی است که سایت را از «قالب آماده» جدا می‌کند.
+   ========================================================================== */
+
+/* بخش‌ها با شماره ۰۱، ۰۲، ۰۳ ... */
+.section-head {
+  position: relative;
+  padding-inline-start: 0;
+}
+
+.section-head .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+/* خط کوچک قبل از متن کوچک هر بخش */
+.section-head .eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--accent);
+  flex: 0 0 auto;
+}
+
+/* عنوان اصلی بخش با خط زیرین نازک */
+.section-head h2 {
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* ==========================================================================
+   هیرو: خطوط عمودی نازک به‌جای لکه رنگی
+   --------------------------------------------------------------------------
+   دایره محو حذف شد چون کلیشه‌ای بود و در بعضی گوشی‌ها سرریز می‌کرد.
+   حالا یک شبکه خطی نازک داریم که حس فنی و «کاغذ نقشه» می‌دهد.
+   ========================================================================== */
+
+.hero {
+  border-bottom: 1px solid var(--line);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px);
+  background-size: 25% 100%;
+  opacity: 0.5;
+  /* لبه‌ها محو شوند تا خطوط تیز و بریده دیده نشوند */
+  mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
+}
+
+html[data-theme="dark"] .hero::before {
+  opacity: 0.35;
+}
+
+/* در موبایل خطوط کمتر تا شلوغ نشود */
+@media (max-width: 680px) {
+  .hero::before {
+    background-size: 50% 100%;
+    opacity: 0.3;
+  }
+}
+
+/* ==========================================================================
+   اصلاح گردی عناصر با رادیوس جدید
+   ========================================================================== */
+
+/* برچسب‌ها و چیپ‌ها همچنان قرصی‌شکل می‌مانند — تصمیم عمدی */
+.path-level,
+.chip,
+.project-thumb small {
+  border-radius: 999px;
+}
+
+/* آواتار و نشان برند: مربع با گوشه کم */
+.avatar,
+.brand-mark {
+  border-radius: var(--radius);
+}
+
+/* نوار تزئینی بالای کارت اشتباه‌ها با گوشه جدید */
+.log-item::before {
+  border-radius: var(--radius) var(--radius) 0 0;
 }
