@@ -29,7 +29,7 @@ $visible = array_filter($projects, function ($project) use ($active) {
     <div class="wrap">
         <p class="eyebrow">نمونه‌کارها</p>
         <h1>چند پروژه که ساخته‌ام</h1>
-        <p class="lead">همه پروژه‌های کاری نیستند، فقط آن‌هایی که اجازه انتشارشان را دارم.</p>
+        <p class="lead"></p>
     </div>
 </section>
 
@@ -71,7 +71,7 @@ $visible = array_filter($projects, function ($project) use ($active) {
                                     <li><?= e($tag) ?></li>
                                 <?php endforeach; ?>
                             </ul>
-                            <a class="link-more" href="<?= e($project['link']) ?>">جزئیات بیشتر ←</a>
+                            <a class="link-more" href="<?= e($project['']) ?>">جزئیات بیشتر ←</a>
                         </div>
                     </article>
                 <?php endforeach; ?>

@@ -46,8 +46,8 @@ $projects = [
         'title' => 'سامانه احراز هویت',
         'desc' => 'ثبت‌نام، ورود، بازیابی رمز عبور و پنل شخصی با مدیریت اطلاعات کاربر.',
         'tags' => ['PHP', 'MySQL', 'Bootstrap', 'JavaScript'],
-        'image' => 'assets/images/projects/auth.jpg',
-        'link' => '#',
+        'image' => 'assets/images/projects/register.png',
+        'link' => 'assets/images/projects/register.png',
         'status' => 'پروژه تمرینی',
     ],
     [
