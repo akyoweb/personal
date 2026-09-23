@@ -1,0 +1,117 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="myazmooncss.css">
+</head>
+
+<body class="main">
+
+    <div class="soal">
+        <div class="soal2">
+
+            <span id="soal" style="font-size:25px ; ">سلام خوبی؟</span>
+            <br>
+
+            <div id="javabha" class="soal3">
+
+                <input type="radio" name="j" id="j1"> 
+                <label id="jj1" for="j1">خوبم</label>
+                <br><br>
+
+                <input type="radio" name="j" id="j2"> 
+                <label id="jj2" for="j2">خوبم</label>
+                <br><br>
+
+                <input type="radio" name="j" id="j3"> 
+                <label id="jj3" for="j3">خوبم</label>
+                <br><br>
+
+                <input type="radio" name="j" id="j4"> 
+                <label id="jj4" for="j4">خوبم</label>
+
+            </div>
+        </div>
+
+        <button id="btn" class="dokme1" onclick="ejra()">ارسال</button>
+    </div>
+
+<script>
+
+var soal = [
+'کدام زبان در پلتفرم وب اجرا میشود؟',
+'کدام یک زبان برنامه نویسی نیست؟',
+'با اچ تی ام ال کدام کار نمیتوان انجام داد؟',
+'زمان بوجود امدن زبان جاوا اسکریپت؟'
+];
+
+var j = [
+['جاوا', 'سی', 'پایتون', 'جاوا اسکریپت',3],
+['HTML', 'JAVA', 'GO', 'JS',0],
+['برنامه تحت وب', 'طراحی سایت', 'اپلیکیشن تحت وب','برنامه نویسی ویندوز',3],
+['1994', '1995', '2011','2006',1]
+];
+
+var soal_html = document.getElementById("soal");
+var jj1 = document.getElementById("jj1");
+var jj2 = document.getElementById("jj2");
+var jj3 = document.getElementById("jj3");
+var jj4 = document.getElementById("jj4");
+
+soal_html.innerText = soal[0];
+jj1.innerText = j[0][0];
+jj2.innerText = j[0][1];
+jj3.innerText = j[0][2];
+jj4.innerText = j[0][3];
+
+var ic = 0;
+var dorost = 0;
+
+function ejra(){
+if(ic>3 ){
+    window.location.reload()
+    return;
+}
+var ch1 = document.getElementById('j1').checked;
+var ch2 = document.getElementById('j2').checked;
+var ch3 = document.getElementById('j3').checked;
+var ch4 = document.getElementById('j4').checked;
+
+
+if (ic==0 && ch4==true){dorost++}
+if (ic==1 && ch1==true){dorost++}
+if (ic==2 && ch4==true){dorost++}
+if (ic==3 && ch2==true){dorost++}
+
+ic = ic + 1;
+
+if(ic > 3){
+ soal_html.innerText = "جواب صحیح شما:" + dorost.toString()+' از '+ic.toString() +"سوال" ;
+    document.getElementById("javabha").style.display='none';
+      document.getElementById("btn").innerText='ازمون مجدد';
+}
+else{
+    
+soal_html.innerText = soal[ic];
+jj1.innerText = j[ic][0];
+jj2.innerText = j[ic][1];
+jj3.innerText = j[ic][2];
+jj4.innerText = j[ic][3];
+
+
+}
+
+if ( ic<4 && ch1 == false && ch2 == false && ch3 == false && ch4 == false){
+    return;
+}
+
+document.getElementById('j1').checked=false;
+document.getElementById('j2').checked=false;
+document.getElementById('j3').checked=false;
+document.getElementById('j4').checked=false;
+
+}
+
+</script>
+
+</body>
+</html>

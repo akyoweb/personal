@@ -1,0 +1,54 @@
+@font-face {
+    font-family: iransans ;
+    src: url(iransans2.woff2);
+}
+.main {
+    background: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 100%);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: iransans;
+}
+
+.soal {
+
+    width: 600px;
+    height: 490px;
+    background-color: white;
+
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgb(180, 179, 179);
+
+overflow: hidden;
+    margin: auto;
+}
+
+.soal2 {
+height: 374px;
+padding: 50px 20px 0px 25px;
+direction: rtl;
+}
+
+.dokme1 {width: 100%;
+border: none;
+height: 68px;
+font-family: iransans;
+font-size: 20px;
+color: white;
+background-color: rgba(139, 16, 139, 0.671);
+}
+.dokme1:hover{
+    background-color: rgb(124, 15, 124);
+    cursor: pointer;
+    transition: 0.4s;
+}
+.soal3{
+width: 100%;
+text-align: right;
+padding-right:25px ;
+padding-top: 50px;
+font-size: 18px;
+
+
+}
