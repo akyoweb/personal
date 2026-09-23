@@ -9,10 +9,10 @@ $profile = [
     'role' => 'توسعه‌دهنده وب و طراح رابط کاربری',
     'location' => 'تهران، ایران',
     'email' => 'mmdj3004@gmail.com',
-    'github' => 'https://github.com/akyoweb',
-    'linkedin' => 'https://linkedin.com/in/akyo',
+    'github' => 'https://github.com/Akyoweb',
+    'linkedin' => 'https://linkedin.com/in/akyoweb',
     'telegram' => 'https://t.me/AKYO_O',
-    'resume' => 'assets/files/mohammad-jahani.pdf',
+    'resume' => 'assets/files/files.rar',
     'availability' => 'آماده همکاری روی پروژه‌های جدید',
     'intro' => 'به کسب‌وکارها کمک می‌کنم وب‌سایت‌هایی سریع، قابل‌اعتماد و ساده برای استفاده بسازند؛ از دیتابیس و بک‌اند تا آخرین جزئیات رابط کاربری.',
 ];

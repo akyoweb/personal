@@ -1,0 +1,23 @@
+@font-face {
+    font-family: iransans;
+    src: url('../font/iransans.ttf');
+}
+
+
+
+
+.body_login{
+    background: url('../images/back_login.jpg');
+    background-size: cover;
+    font-family: iransans;
+}
+
+.card{
+    opacity: 0.8;
+    border-radius: 20px; 
+    direction: rtl;
+}
+
+
+.sb-nav-fixed{ 
+}
