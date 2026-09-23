@@ -927,6 +927,7 @@ p {
     display: none;
   }
 
+  /* منوی باز موبایل روی کل عرض می‌نشیند */
   .site-nav.is-open {
     display: flex;
   }
@@ -954,6 +955,54 @@ p {
     gap: 6px;
   }
   .brand-text {
+    display: none;
+  }
+}
+
+/*
+ * بین ۶۸۰ تا ۹۰۰ پیکسل جا برای سربرگ کامل (برند + منو + سه دکمه) نیست.
+ * در این بازه منو را جمع می‌کنیم تا صفحه افقی سرریز نکند.
+ */
+@media (max-width: 900px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--surface, #fff);
+    border-bottom: 1px solid var(--line);
+    padding: 6px 20px 14px;
+    display: none;
+  }
+
+  .site-nav.is-open {
+    display: flex;
+  }
+
+  .site-nav a {
+    padding: 11px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .site-nav a:last-child {
+    border-bottom: 0;
+  }
+
+  .site-nav a.is-active {
+    border-bottom-color: var(--line);
+    color: var(--accent);
+  }
+}
+
+/* در تبلت و موبایل بزرگ، متن دکمه زبان جا را تنگ می‌کند */
+@media (max-width: 900px) {
+  .lang-toggle-text {
     display: none;
   }
 }
@@ -1185,22 +1234,48 @@ input[dir="ltr"],
     margin-left: 8px;
   }
 
-  /* در موبایل فقط کد زبان نمایش داده می‌شود، نه متن کامل */
   .lang-toggle {
     padding: 0 10px;
-  }
-
-  .lang-toggle-text {
-    display: none;
   }
 
   .header-tools .theme-toggle {
     margin: 0;
   }
+}
 
-  .site-nav {
-    background: var(--surface, #fff);
-  }
+/*
+ * سربرگ در هر اندازه‌ای باید در یک ردیف جا شود.
+ * header-inner را نسبت به سرریز مقاوم می‌کنیم و اجازه می‌دهیم
+ * برند و جعبه‌ابزار کوچک شوند تا صفحه افقی سرریز نکند.
+ */
+.header-inner {
+  gap: 12px;
+}
+
+.header-inner > * {
+  min-width: 0;
+}
+
+.brand {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.brand-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header-tools {
+  flex: 0 0 auto;
+}
+
+/* سربرگ هرگز باعث اسکرول افقی نشود */
+.site-header,
+.header-inner {
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 @media (max-width: 420px) {
