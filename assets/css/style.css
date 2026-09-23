@@ -1021,7 +1021,27 @@ body { overflow-x: hidden; }
 .site-header { box-shadow: 0 10px 30px rgba(16, 42, 67, .04); }
 main { min-height: calc(100vh - 180px); }
 .hero { position: relative; isolation: isolate; }
-.hero::before { content: ""; position: absolute; z-index: -1; width: 420px; height: 420px; top: -120px; right: -180px; border-radius: 50%; background: rgba(47,111,94,.08); filter: blur(2px); }
+/*
+ * دایره تزئینی پس‌زمینه.
+ * نکته مهم: با right:-180px این عنصر ۱۸۰ پیکسل از لبه صفحه بیرون می‌زند و
+ * در برخی گوشی‌ها (A55) اسکرول افقی ایجاد می‌کند؛ در RTL هم چون جهت
+ * محاسبه آفست فرق دارد، چیدمان را به‌هم می‌ریزد.
+ * پس با inset-inline آن را به خود هیرو مقید می‌کنیم و اندازه‌اش را
+ * نسبت به عرض صفحه محدود می‌کنیم تا هرگز از کادر بیرون نزند.
+ */
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: min(420px, 70vw);
+  height: min(420px, 70vw);
+  top: -120px;
+  inset-inline-end: -8%;
+  border-radius: 50%;
+  background: rgba(47, 111, 94, .08);
+  filter: blur(2px);
+  pointer-events: none;
+}
 .status-dot { display: inline-block; width: 8px; height: 8px; margin-left: 7px; border-radius: 50%; background: #43a87e; box-shadow: 0 0 0 5px rgba(67,168,126,.12); }
 .hero-meta { display: flex; flex-wrap: wrap; gap: 14px; color: var(--ink-faint); font-size: .82rem; }
 .hero-meta span::first-letter { color: var(--accent); }
@@ -1213,8 +1233,9 @@ html[dir="ltr"] .filter-label {
   margin-right: 4px;
 }
 
-/* متن‌های لاتین مثل ایمیل و آدرس در هر دو حالت چپ‌به‌راست بمانند */
-[dir="ltr"],
+/* متن‌های لاتین مثل ایمیل و آدرس در هر دو حالت چپ‌به‌راست بمانند.
+   نکته: این قاعده نباید به خود <html> بخورد، چون unicode-bidi روی ریشه
+   جهت پایه کل صفحه را خراب می‌کند. */
 input[type="email"],
 input[dir="ltr"],
 .contact-list a[href^="mailto:"],
@@ -1271,10 +1292,22 @@ input[dir="ltr"],
   flex: 0 0 auto;
 }
 
-/* سربرگ هرگز باعث اسکرول افقی نشود */
-.site-header,
-.header-inner {
+/*
+ * شبکه ایمنی: هیچ بخشی نباید صفحه را افقی سرریز کند.
+ * این قاعده روی خود body است (نه site-header) تا منوی بازشوی
+ * موبایل که position:absolute دارد بریده نشود.
+ */
+html,
+body {
   max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* عناصر تزئینی مطلق هرگز کلیک را نگیرند و از کادر بیرون نزنند */
+.hero,
+.section,
+.page-head,
+.site-footer {
   overflow-x: clip;
 }
 
