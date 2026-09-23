@@ -282,6 +282,16 @@ function lang_url($url = '')
 {
     global $lang;
 
+    return lang_url_for($url, $lang);
+}
+
+/**
+ * ساخت آدرس یک صفحه با زبان دلخواه.
+ * برای دکمه تغییر زبان لازم است، چون آن دکمه باید به زبان «دیگر»
+ * اشاره کند، نه به زبان فعلی.
+ */
+function lang_url_for($url, $targetLang)
+{
     if ($url === '') {
         $url = basename($_SERVER['PHP_SELF']);
     }
@@ -295,7 +305,11 @@ function lang_url($url = '')
     $path = $parts[0];
     $hash = isset($parts[1]) ? '#' . $parts[1] : '';
 
+    // اگر آدرس از قبل ?lang= دارد، جایگزینش می‌کنیم تا دو بار تکرار نشود
+    $path = preg_replace('/([?&])lang=[^&]*&?/', '$1', $path);
+    $path = rtrim($path, '?&');
+
     $separator = strpos($path, '?') === false ? '?' : '&';
 
-    return $path . $separator . 'lang=' . $lang . $hash;
+    return $path . $separator . 'lang=' . $targetLang . $hash;
 }

@@ -48,7 +48,7 @@ $other_lang = $is_rtl ? 'en' : 'fa';
             </nav>
 
             <div class="header-tools">
-                <a class="lang-toggle" href="<?= e(lang_url('')) ?>" data-lang="<?= e($other_lang) ?>"
+                <a class="lang-toggle" href="<?= e(lang_url_for('', $other_lang)) ?>" data-lang="<?= e($other_lang) ?>"
                     hreflang="<?= e($other_lang) ?>" title="<?= e(lang('lang_switch_title')) ?>"
                     aria-label="<?= e(lang('lang_switch_title')) ?>">
                     <span aria-hidden="true"><?= $is_rtl ? 'EN' : 'فا' ?></span>
