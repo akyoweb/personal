@@ -1046,3 +1046,165 @@ html[data-theme="dark"] .hero::before { background: rgba(102,199,165,.08); }
   background: linear-gradient(180deg, rgba(0,0,0,.08), transparent 48%, rgba(0,0,0,.18));
 }
 .project-thumb small { z-index: 1; }
+
+/* ==========================================================================
+   جعبه‌ابزار سربرگ: تغییر زبان + پوسته + منوی موبایل
+   ========================================================================== */
+
+.header-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 18px;
+}
+
+html[dir="ltr"] .header-tools {
+  margin-right: 0;
+  margin-left: 18px;
+}
+
+/* دکمه تغییر زبان، هم‌اندازه و کنار دکمه پوسته */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 38px;
+  padding: 0 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-soft);
+  background: var(--surface, #fff);
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.lang-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.lang-toggle span[aria-hidden="true"] {
+  display: grid;
+  place-items: center;
+  min-width: 26px;
+  height: 24px;
+  padding: 0 6px;
+  border-radius: 6px;
+  background: var(--bg-soft, #f3f4f2);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+}
+
+html[data-theme="dark"] .lang-toggle {
+  background: var(--surface);
+}
+
+/* دکمه پوسته دیگر margin اضافه ندارد؛ فاصله از gap می‌آید */
+.header-tools .theme-toggle {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+/* دکمه منوی موبایل هم داخل جعبه‌ابزار است */
+.header-tools .nav-toggle {
+  margin: 0;
+}
+
+/* لینک پرش به محتوا؛ فقط با کیبورد دیده می‌شود */
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: 20px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: 0 0 var(--radius) var(--radius);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  transition: top 0.18s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  color: #fff;
+}
+
+/* پیام «جزئیات بیشتر» برای پروژه‌هایی که لینک ندارند */
+.link-more.is-muted {
+  color: var(--ink-faint);
+  cursor: default;
+  border-bottom-color: transparent;
+}
+
+/* ==========================================================================
+   نسخه انگلیسی / چپ‌به‌راست
+   ========================================================================== */
+
+html[dir="ltr"] body {
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+/* در حالت انگلیسی اعداد و درصدها لاتین نمایش داده می‌شوند */
+html[dir="ltr"] .skill-value,
+html[dir="ltr"] .project-index {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+/* اصلاح جهت عناصری که در RTL جابه‌جا شده‌اند */
+html[dir="ltr"] .project-thumb small {
+  right: auto;
+  left: 12px;
+}
+
+html[dir="ltr"] .filter-label {
+  margin-left: 0;
+  margin-right: 4px;
+}
+
+/* متن‌های لاتین مثل ایمیل و آدرس در هر دو حالت چپ‌به‌راست بمانند */
+[dir="ltr"],
+input[type="email"],
+input[dir="ltr"],
+.contact-list a[href^="mailto:"],
+.contact-list a[href^="http"] {
+  unicode-bidi: plaintext;
+}
+
+/* فاصله سربرگ در موبایل با دکمه‌های بیشتر */
+@media (max-width: 680px) {
+  .header-tools {
+    gap: 6px;
+    margin-right: 8px;
+  }
+
+  html[dir="ltr"] .header-tools {
+    margin-right: 0;
+    margin-left: 8px;
+  }
+
+  /* در موبایل فقط کد زبان نمایش داده می‌شود، نه متن کامل */
+  .lang-toggle {
+    padding: 0 10px;
+  }
+
+  .lang-toggle-text {
+    display: none;
+  }
+
+  .header-tools .theme-toggle {
+    margin: 0;
+  }
+
+  .site-nav {
+    background: var(--surface, #fff);
+  }
+}
+
+@media (max-width: 420px) {
+  .brand-text {
+    display: none;
+  }
+}

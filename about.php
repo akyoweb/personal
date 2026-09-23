@@ -1,18 +1,19 @@
 <?php
 require_once __DIR__ . '/includes/functions.php';
+require_once __DIR__ . '/includes/i18n.php';
 require_once __DIR__ . '/includes/data.php';
 
-$page_title = 'درباره من';
-$page_desc = 'درباره ' . $profile['name'] . ' — سابقه کاری و روش کار.';
+$page_title = lang('about_meta_title');
+$page_desc = lang('about_meta_desc', ['name' => $me['name']]);
 include __DIR__ . '/includes/header.php';
 ?>
 
 <section class="page-head">
     <div class="wrap">
-        <p class="eyebrow">درباره من</p>
-        <h1>چطور به اینجا رسیدم</h1>
+        <p class="eyebrow"><?= e(lang('about_eyebrow')) ?></p>
+        <h1><?= e(lang('about_heading')) ?></h1>
         <p class="lead">
-            مسیر من با یادگیری مداوم و ساخت پروژه‌های تمرینی شروع شد؛ امروز تمرکزم ساخت تجربه‌های وب ساده، سریع و قابل اتکاست.
+            <?= e(lang('about_lead')) ?>
         </p>
     </div>
 </section>
@@ -20,64 +21,60 @@ include __DIR__ . '/includes/header.php';
 <section class="section">
     <div class="wrap two-col">
         <div class="prose">
-            <p class="eyebrow">داستان من</p>
-            <h2>کمی درباره خودم</h2>
+            <p class="eyebrow"><?= e(lang('about_story_eyebrow')) ?></p>
+            <h2><?= e(lang('about_story_heading')) ?></h2>
             <p>
-                اسمم <?= e($profile['name']) ?> است و در <?= e($profile['location']) ?> زندگی می‌کنم.
-                بیشتر وقتم صرف یادگیری و نوشتن کد سمت سرور می‌شود، اما از کار روی رابط کاربری هم دور نشده‌ام؛
-                به نظرم یک توسعه‌دهنده وب بهتر است هر دو طرف را بفهمد.
+                <?= e(t_prose('about_p1')) ?>
             </p>
             <p>
-                چیزهایی که برایم مهم‌اند: کد خوانا، تصمیم‌های ساده به‌جای راه‌حل‌های پیچیده،
-                و گفت‌وگوی مستقیم با کسی که پروژه مال اوست. دوست ندارم وسط کار غافلگیری پیش بیاید،
-                پس ترجیح می‌دهم از اول درباره محدودیت‌ها صریح حرف بزنم.
+                <?= e(t_prose('about_p2')) ?>
             </p>
 
-            <p class="eyebrow about-eyebrow">همکاری حرفه‌ای</p>
-            <h2>روش کار</h2>
+            <p class="eyebrow about-eyebrow"><?= e(t_str('about_method_eyebrow')) ?></p>
+            <h2><?= e(t_str('about_method_heading')) ?></h2>
             <ol class="steps">
                 <li>
-                    <strong>گفت‌وگوی اول</strong>
-                    درباره هدف پروژه، زمان و بودجه حرف می‌زنیم تا ببینیم به هم می‌خوریم یا نه.
+                    <strong><?= e(t_str('about_step1_title')) ?></strong>
+                    <?= e(t_str('about_step1_text')) ?>
                 </li>
                 <li>
-                    <strong>طرح و برآورد</strong>
-                    ساختار پروژه و مراحل تحویل را می‌نویسم؛ بدون تعهد به چیزهایی که ممکن نیست.
+                    <strong><?= e(t_str('about_step2_title')) ?></strong>
+                    <?= e(t_str('about_step2_text')) ?>
                 </li>
                 <li>
-                    <strong>ساخت مرحله‌ای</strong>
-                    بعد از هر مرحله چیزی قابل دیدن تحویل می‌دهم تا مسیر زودتر اصلاح شود.
+                    <strong><?= e(t_str('about_step3_title')) ?></strong>
+                    <?= e(t_str('about_step3_text')) ?>
                 </li>
                 <li>
-                    <strong>تحویل و پشتیبانی</strong>
-                    کد و مستندات را تحویل می‌دهم و تا مدتی بعد از تحویل همراه پروژه هستم.
+                    <strong><?= e(t_str('about_step4_title')) ?></strong>
+                    <?= e(t_str('about_step4_text')) ?>
                 </li>
             </ol>
         </div>
 
         <aside class="side-box">
-            <p class="eyebrow">پروفایل</p>
-            <h3>در یک نگاه</h3>
+            <p class="eyebrow"><?= e(lang('about_profile_eyebrow')) ?></p>
+            <h3><?= e(lang('about_profile_heading')) ?></h3>
             <dl class="facts">
                 <div>
-                    <dt>نام</dt>
-                    <dd><?= e($profile['name']) ?></dd>
+                    <dt><?= e(lang('about_fact_name')) ?></dt>
+                    <dd><?= e($me['name']) ?></dd>
                 </div>
                 <div>
-                    <dt>حرفه</dt>
-                    <dd><?= e($profile['role']) ?></dd>
+                    <dt><?= e(lang('about_fact_role')) ?></dt>
+                    <dd><?= e($me['role']) ?></dd>
                 </div>
                 <div>
-                    <dt>موقعیت</dt>
-                    <dd><?= e($profile['location']) ?></dd>
+                    <dt><?= e(lang('about_fact_location')) ?></dt>
+                    <dd><?= e($me['location']) ?></dd>
                 </div>
                 <div>
-                    <dt>ایمیل</dt>
-                    <dd><a href="mailto:<?= e($profile['email']) ?>"><?= e($profile['email']) ?></a></dd>
+                    <dt><?= e(lang('about_fact_email')) ?></dt>
+                    <dd><a href="mailto:<?= e($me['email']) ?>"><?= e($me['email']) ?></a></dd>
                 </div>
             </dl>
-            <a class="btn btn-primary btn-block" href="<?= e($profile['resume']) ?>" download>دریافت رزومه <span aria-hidden="true">↓</span></a>
-            <a class="btn btn-ghost btn-block" href="contact.php">ارتباط با من</a>
+            <a class="btn btn-primary btn-block" href="<?= e($me['resume']) ?>" download><?= e(lang('about_resume')) ?> <span aria-hidden="true">↓</span></a>
+            <a class="btn btn-ghost btn-block" href="<?= e(lang_url('contact.php')) ?>"><?= e(lang('about_contact')) ?></a>
         </aside>
     </div>
 </section>
@@ -85,18 +82,18 @@ include __DIR__ . '/includes/header.php';
 <section class="section section-alt">
     <div class="wrap">
         <header class="section-head">
-            <p class="eyebrow">مسیر یادگیری</p>
-            <h2>تجربه و تمرکز فعلی</h2>
-            <p>هر پروژه فرصتی برای بهتر شدن، مستندسازی و ساختن عادت‌های حرفه‌ای‌تر است.</p>
+            <p class="eyebrow"><?= e(lang('about_journey_eyebrow')) ?></p>
+            <h2><?= e(lang('about_journey_heading')) ?></h2>
+            <p><?= e(lang('about_journey_lead')) ?></p>
         </header>
 
         <ul class="timeline">
             <?php foreach ($experience as $job): ?>
                 <li>
-                    <span class="timeline-period"><?= e($job['period']) ?></span>
+                    <span class="timeline-period"><?= e(t($job['period'])) ?></span>
                     <div class="timeline-body">
-                        <h3><?= e($job['role']) ?> <small>— <?= e($job['org']) ?></small></h3>
-                        <p><?= e($job['note']) ?></p>
+                        <h3><?= e(t($job['role'])) ?> <small>— <?= e(t($job['org'])) ?></small></h3>
+                        <p><?= e(t($job['note'])) ?></p>
                     </div>
                 </li>
             <?php endforeach; ?>

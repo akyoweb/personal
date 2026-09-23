@@ -1,2 +1,6 @@
 assets/files/random
 assets/files/files.rar
+# تنظیمات محرمانه ایمیل (رمز SMTP) نباید روی گیت‌هاب برود
+includes/mail-config.php
+# فایل پیام‌های فرم تماس
+storage/messages.log
