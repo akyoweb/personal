@@ -447,22 +447,22 @@ p {
   position: relative;
   /* خصوصیت‌های منطقی: در فارسی راست، در انگلیسی چپ */
   padding-block: 0 22px;
-  padding-inline: 0 46px;
-  border-inline-end: 1px solid var(--line);
-  margin-inline-end: 15px;
+  padding-inline: 46px 0;
+  border-inline-start: 1px solid var(--line);
+  margin-inline-start: 15px;
   color: var(--ink-soft);
   font-size: 0.94rem;
 }
 
 .steps li:last-child {
-  border-inline-end-color: transparent;
+  border-inline-start-color: transparent;
   padding-bottom: 0;
 }
 
 .steps li::before {
   content: counter(step);
   position: absolute;
-  inset-inline-end: -15px;
+  inset-inline-start: -15px;
   top: 0;
   width: 30px;
   height: 30px;
@@ -1014,7 +1014,7 @@ p {
   }
 
   .steps li {
-    padding-inline-end: 38px;
+    padding-inline-start: 38px;
   }
 
   .facts > div,
