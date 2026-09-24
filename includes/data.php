@@ -33,7 +33,7 @@ $profile = [
     'github' => 'https://github.com/Akyoweb',
     'linkedin' => 'https://linkedin.com/in/akyoweb',
     'telegram' => 'https://t.me/AKYO_O',
-    'resume' => 'assets/files/files.rar',
+    'resume' => 'assets/files/resume-fa.pdf',
 ];
 
 /** متن‌های طولانی که جای دیگری نمی‌گنجند */
