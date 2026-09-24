@@ -1,9 +1,21 @@
 <?php
+require_once __DIR__ . '/seo.php';
+
 // متغیرهای صفحه پیش از include تعریف می‌شوند.
 $page_title = $page_title ?? $me['name'];
 $page_desc = $page_desc ?? $me['intro'];
-$canonical = basename($_SERVER['PHP_SELF']);
+$page_robots = $page_robots ?? 'index, follow';
+$og_type = $og_type ?? 'website';
+$og_image = $og_image ?? '';
+$page_date = $page_date ?? null;
+$page_keywords = $page_keywords ?? '';
+$extra_schema = $extra_schema ?? [];
+
 $other_lang = $is_rtl ? 'en' : 'fa';
+$full_title = $page_title . ' — ' . $me['name'] . ' (' . $me['brand'] . ')';
+$canonical = canonical_url();
+$canonical_fa = canonical_url_for_lang('fa');
+$canonical_en = canonical_url_for_lang('en');
 ?>
 <!DOCTYPE html>
 <html lang="<?= e($lang) ?>" dir="<?= e($dir) ?>">
@@ -11,17 +23,52 @@ $other_lang = $is_rtl ? 'en' : 'fa';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= e($page_title) ?> — <?= e($me['name']) ?></title>
+    <title><?= e($full_title) ?></title>
     <meta name="description" content="<?= e($page_desc) ?>">
+    <meta name="robots" content="<?= e($page_robots) ?>">
+    <meta name="author" content="<?= e($me['name']) ?>">
+    <?php if ($page_keywords !== ''): ?>
+        <meta name="keywords" content="<?= e($page_keywords) ?>">
+    <?php endif; ?>
     <meta name="theme-color" content="#102a43">
     <meta name="color-scheme" content="light dark">
-    <meta property="og:title" content="<?= e($page_title) ?> — <?= e($me['name']) ?>">
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="<?= e($me['brand']) ?>">
+    <meta property="og:title" content="<?= e($full_title) ?>">
     <meta property="og:description" content="<?= e($page_desc) ?>">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="<?= e($og_type) ?>">
+    <meta property="og:url" content="<?= e($canonical) ?>">
     <meta property="og:locale" content="<?= $lang === 'fa' ? 'fa_IR' : 'en_US' ?>">
+    <meta property="og:locale:alternate" content="<?= $lang === 'fa' ? 'en_US' : 'fa_IR' ?>">
+    <?php if ($og_image !== ''): ?>
+        <meta property="og:image" content="<?= e(absolute_url($og_image)) ?>">
+    <?php endif; ?>
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?= e($full_title) ?>">
+    <meta name="twitter:description" content="<?= e($page_desc) ?>">
+    <?php if ($og_image !== ''): ?>
+        <meta name="twitter:image" content="<?= e(absolute_url($og_image)) ?>">
+    <?php endif; ?>
+
     <link rel="canonical" href="<?= e($canonical) ?>">
-    <link rel="alternate" hreflang="fa" href="<?= e($canonical . '?lang=fa') ?>">
-    <link rel="alternate" hreflang="en" href="<?= e($canonical . '?lang=en') ?>">
+    <link rel="alternate" hreflang="fa" href="<?= e($canonical_fa) ?>">
+    <link rel="alternate" hreflang="en" href="<?= e($canonical_en) ?>">
+    <link rel="alternate" hreflang="x-default" href="<?= e($canonical_fa) ?>">
+    <link rel="alternate" type="application/rss+xml" title="<?= e(lang('blog_rss')) ?>" href="feed.php">
+
+    <?php if ($page_date !== null): ?>
+        <meta property="article:published_time" content="<?= e($page_date) ?>">
+    <?php endif; ?>
+
+    <!-- داده ساخت‌یافته: شخص + وب‌سایت (محمد جهانی و akyoweb) -->
+    <?= json_ld(schema_person()) ?>
+    <?= json_ld(schema_website()) ?>
+    <?php foreach ($extra_schema as $schema): ?>
+        <?= json_ld($schema) ?>
+    <?php endforeach; ?>
 
     <!-- فونت وزیرمتن به‌صورت محلی بارگذاری می‌شود؛ هیچ درخواستی به سرور بیرونی نمی‌رود -->
     <link rel="stylesheet" href="assets/css/fonts.css">
@@ -44,6 +91,7 @@ $other_lang = $is_rtl ? 'en' : 'fa';
                 <a href="<?= e(lang_url('index.php')) ?>" class="<?= e(nav_class('index.php')) ?>"><?= e(lang('nav_home')) ?></a>
                 <a href="<?= e(lang_url('about.php')) ?>" class="<?= e(nav_class('about.php')) ?>"><?= e(lang('nav_about')) ?></a>
                 <a href="<?= e(lang_url('work.php')) ?>" class="<?= e(nav_class('work.php')) ?>"><?= e(lang('nav_work')) ?></a>
+                <a href="<?= e(lang_url('blog.php')) ?>" class="<?= e(nav_class('blog.php')) ?><?= current_page() === 'blog-post.php' ? ' is-active' : '' ?>"><?= e(lang('nav_blog')) ?></a>
                 <a href="<?= e(lang_url('contact.php')) ?>" class="<?= e(nav_class('contact.php')) ?>"><?= e(lang('nav_contact')) ?></a>
             </nav>
 

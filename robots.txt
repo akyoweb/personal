@@ -1,0 +1,12 @@
+# robots.txt - personal site of Mohammad Jahanii / akyoweb
+# Full crawl permission for all search engines.
+
+User-agent: *
+Allow: /
+Disallow: /includes/
+Disallow: /storage/
+Disallow: /assets/files/divar1/
+Disallow: /assets/files/azmon/
+
+# Sitemap (rename sitemap.php to sitemap.xml on the host)
+Sitemap: /sitemap.xml

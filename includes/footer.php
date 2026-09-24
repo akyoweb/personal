@@ -3,6 +3,7 @@
 <footer class="site-footer">
     <div class="wrap footer-inner">
         <div class="footer-links">
+            <a href="<?= e(lang_url('blog.php')) ?>"><?= e(lang('nav_blog')) ?></a>
             <a href="mailto:<?= e($me['email']) ?>"><?= e($me['email']) ?></a>
             <a href="<?= e($me['github']) ?>" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href="<?= e($me['linkedin']) ?>" target="_blank" rel="noopener noreferrer">LinkedIn</a>

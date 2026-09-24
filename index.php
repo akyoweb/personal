@@ -5,6 +5,7 @@ require_once __DIR__ . '/includes/data.php';
 
 $page_title = lang('home_meta_title');
 $page_desc = lang('home_meta_desc', ['name' => $me['name'], 'role' => $me['role']]);
+$page_keywords = 'محمد جهانی, Mohammad Jahanii, akyoweb, توسعه‌دهنده وب, طراح رابط کاربری, PHP, JavaScript, MySQL, web developer';
 include __DIR__ . '/includes/header.php';
 ?>
 

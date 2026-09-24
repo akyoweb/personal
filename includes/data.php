@@ -34,6 +34,10 @@ $profile = [
     'linkedin' => 'https://linkedin.com/in/akyoweb',
     'telegram' => 'https://t.me/AKYO_O',
     'resume' => 'assets/files/resume-fa.pdf',
+
+    // نام تجاری/برند؛ برای سئو روی «akyoweb» و «محمد جهانی» کار می‌کند
+    'brand' => 'Akyoweb',
+    'brand_url' => 'https://akyoweb.com',
 ];
 
 /** متن‌های طولانی که جای دیگری نمی‌گنجند */
@@ -367,6 +371,137 @@ $experience = [
 ];
 
 /* ------------------------------------------------------------------
+ * وبلاگ — نوشته‌های برنامه‌نویسی
+ * ------------------------------------------------------------------
+ * هر نوشته یک slug یکتا دارد که در آدرس می‌آید: blog-post.php?slug=...
+ * محتوای هر نوشته آرایه‌ای از پاراگراف‌ها است؛ یک متن می‌تواند با
+ * پیشوندهای ساده غنی شود:
+ *   'list: آیتم یک | آیتم دو'   → فهرست گلوله‌ای
+ *   'code: کد'                 → بلوک کد
+ *   هر چیز دیگر                 → پاراگراف معمولی
+ */
+$posts = [
+    [
+        'slug' => 'why-programming-matters',
+        'date' => '2025-11-18',
+        'reading_minutes' => 6,
+        'tags' => ['برنامه‌نویسی', 'Programming'],
+        'title' => [
+            'fa' => 'چرا برنامه‌نویسی امروز یک مهارت پایه است؟',
+            'en' => 'Why programming is a core skill today',
+        ],
+        'excerpt' => [
+            'fa' => 'برنامه‌نویسی فقط نوشتن کد نیست؛ یاد گرفتن حل مسئله، تفکر منطقی و ساختن ابزاری است که کار واقعی را ساده می‌کند.',
+            'en' => 'Programming is not just writing code; it is learning to solve problems, think logically and build tools that make real work easier.',
+        ],
+        'body' => [
+            'fa' => [
+                'خیلی‌ها فکر می‌کنند برنامه‌نویسی یعنی حفظ کردن دستورها و نوشتن چند خط کد. تجربه‌ی من چیز دیگری است: برنامه‌نویسی بیشتر از هر چیز تمرین حل مسئله است. وقتی مسئله‌ای را به قدم‌های کوچک می‌شکنی، در واقع یاد می‌گیری چطور به مسائل دنیای واقعی هم نزدیک شوی.',
+                'اهمیت برنامه‌نویسی امروز در این است که نرم‌افزار به بخشی از زندگی روزمره تبدیل شده. از حسابداری یک مغازه‌ی کوچک تا ثبت سفارش یک کارگاه، همه‌چیز روی نرم‌افزار می‌چرخد. کسی که برنامه‌نویسی بلد باشد، می‌تواند این ابزارها را بسازد یا حداقل بهتر با آن‌ها کار کند.',
+                'نکته‌ی مهم این است که برنامه‌نویسی برای همه یکسان نیست. لازم نیست همه مهندس نرم‌افزار شوند؛ اما فهمیدن منطق کد باعث می‌شود آدم‌ها در هر شغلی توانمندتر باشند. یک مدیر محصول، یک حسابدار یا یک طراح هم اگر پایه‌ی برنامه‌نویسی داشته باشد، بهتر می‌فهمد ابزاری که با آن کار می‌کند چه محدودیت‌هایی دارد.',
+                'برای من برنامه‌نویسی یک مهارت فنی نیست؛ یک روش فکر کردن است. یاد گرفتم قبل از عجله برای راه‌حل، مسئله را دقیق بفهمم. این عادت از کد به بقیه‌ی زندگی‌ام هم سرایت کرده.',
+            ],
+            'en' => [
+                'Many people think programming means memorising commands and writing a few lines of code. My experience has been different: programming is, above all, practising how to solve problems. When you break a problem into small steps, you are in fact learning how to approach real-world problems too.',
+                'Programming matters today because software has become part of daily life. From a small shop keeping its accounts to a workshop taking orders, everything runs on software. Someone who can program can either build those tools or at least work with them far better.',
+                'The key point is that programming is not the same for everyone. Not everyone needs to become a software engineer; but understanding the logic of code makes people more capable in any job. A product manager, an accountant or a designer with basic programming skills understands much better what the tool they use can and cannot do.',
+                'For me, programming is not just a technical skill; it is a way of thinking. I learned to understand a problem precisely before rushing to a solution. That habit leaked out of code and into the rest of my life.',
+            ],
+        ],
+    ],
+    [
+        'slug' => 'php-backend-foundation',
+        'date' => '2025-11-25',
+        'reading_minutes' => 7,
+        'tags' => ['PHP', 'بک‌اند', 'Backend'],
+        'title' => [
+            'fa' => 'چرا با PHP شروع کردم و چه چیزی یادم داد',
+            'en' => 'Why I started with PHP and what it taught me',
+        ],
+        'excerpt' => [
+            'fa' => 'PHP خام، بدون فریم‌ورک، مجبورم کرد بفهمم نشست، کوکی، توکن امنیتی و مسیریابی دقیقاً چطور کار می‌کنند.',
+            'en' => 'Raw PHP, without a framework, forced me to understand how sessions, cookies, security tokens and routing actually work.',
+        ],
+        'body' => [
+            'fa' => [
+                'PHP زبانی است که بخش عمده‌ی وب زنده‌ی امروز با آن ساخته شده. خیلی از سایت‌های بزرگ دنیا هنوز روی PHP اجرا می‌شوند و همین باعث شد من هم از همین‌جا شروع کنم.',
+                'بزرگ‌ترین درس PHP برای من این بود که پشت صحنه‌ی وب چه خبر است. وقتی بدون فریم‌ورک پروژه می‌نویسی، مجبوری خودت با نشست کاربر، کوکی، توکن CSRF و مسیریابی درگیر شوی:',
+                'code: session_start();\n$token = $_SESSION["csrf"] ?? bin2hex(random_bytes(32));',
+                'اینکه مجبور شوی این‌ها را دستی بنویسی سخت است، اما همان سختی باعث می‌شود بفهمی چرا هر کدام وجود دارند. بعداً وقتی به فریم‌ورکی مثل Laravel می‌رسی، دیگر آن را جعبه‌ی سیاه نمی‌بینی.',
+                'PHP یادم داد که سادگی یک انتخاب است، نه کمبود امکانات. می‌شود یک پروژه‌ی بدون هیچ وابستگی بیرونی ساخت که سریع، قابل نگهداری و قابل درک باشد. برای شروع، این ساده‌ترین و صادقانه‌ترین راه بود.',
+                'در ادامه سراغ PDO و prepared statement رفتم تا کوئری‌هایم امن باشند؛ چون تزریق SQL یکی از اولین دام‌هایی است که هر تازه‌کاری ممکن است در آن بیفتد.',
+            ],
+            'en' => [
+                'PHP is the language behind a large part of the web that is alive today. Many of the world\'s biggest sites still run on PHP, and that is why I started here too.',
+                'The biggest lesson PHP taught me was what actually happens behind the scenes of the web. When you build without a framework, you are forced to deal with user sessions, cookies, CSRF tokens and routing yourself:',
+                'code: session_start();\n$token = $_SESSION["csrf"] ?? bin2hex(random_bytes(32));',
+                'Writing all of this by hand is hard, but that difficulty is exactly what makes you understand why each piece exists. Later, when you reach a framework like Laravel, it no longer looks like a black box.',
+                'PHP taught me that simplicity is a choice, not a lack of features. You can build a project with no external dependency that is fast, maintainable and easy to reason about. For a starting point, that was the simplest and most honest path.',
+                'From there I moved on to PDO and prepared statements so my queries would be safe — SQL injection is one of the first traps a beginner can fall into.',
+            ],
+        ],
+    ],
+    [
+        'slug' => 'frontend-and-language-list',
+        'date' => '2025-12-02',
+        'reading_minutes' => 8,
+        'tags' => ['HTML', 'CSS', 'JavaScript'],
+        'title' => [
+            'fa' => 'زبان‌هایی که بلدم و هر کدام چه نقشی دارند',
+            'en' => 'The languages I know and the role each one plays',
+        ],
+        'excerpt' => [
+            'fa' => 'HTML، CSS، JavaScript، PHP و MySQL — هر زبان یک لایه از وب را می‌سازد و فهمیدن مرز بین آن‌ها مهم‌ترین مهارت است.',
+            'en' => 'HTML, CSS, JavaScript, PHP and MySQL — each language builds one layer of the web, and understanding the boundary between them is the real skill.',
+        ],
+        'body' => [
+            'fa' => [
+                'وب از چند لایه ساخته شده و هر زبان مسئول یک لایه است. فهمیدن همین مرزها، بیشتر از حفظ کردن سینتکس اهمیت دارد.',
+                'list: HTML ساختار و معنای محتوا را می‌سازد. | CSS ظاهر، چیدمان و واکنش‌گرا بودن را کنترل می‌کند. | JavaScript رفتار سمت مرورگر، رویدادها و تعامل را مدیریت می‌کند. | PHP منطق سمت سرور، فرم‌ها و نشست کاربر را می‌سازد. | MySQL داده را ذخیره و بازیابی می‌کند.',
+                'HTML و CSS را روی سطح «مسلط» می‌گذارم چون هر روز با آن‌ها کار می‌کنم: چیدمان واکنش‌گرا، متغیرهای CSS، تم روشن و تاریک و دسترس‌پذیری پایه.',
+                'JavaScript را در سطح «دارم حرفه‌ای می‌شوم» می‌بینم. با DOM و رویدادها و IntersectionObserver راحتم، اما هنوز با ماژول‌ها و ابزار بیلد مثل Vite و Webpack کاملاً راحت نیستم.',
+                'PHP را روی «مسلط» می‌گذارم و MySQL را در حال یادگیری عمیق‌تر. در نهایت هر زبان یک ابزار است؛ مهم این است که بدانی برای هر لایه کدام ابزار را برداری.',
+            ],
+            'en' => [
+                'The web is made of several layers and each language owns one layer. Understanding those boundaries matters more than memorising syntax.',
+                'list: HTML builds the structure and meaning of the content. | CSS controls the look, layout and responsiveness. | JavaScript handles browser-side behaviour, events and interaction. | PHP builds server-side logic, forms and user sessions. | MySQL stores and retrieves the data.',
+                'I put HTML and CSS at the "comfortable" level because I work with them daily: responsive layout, CSS variables, light and dark themes, and basic accessibility.',
+                'I see JavaScript as "getting better". I am at ease with the DOM, events and IntersectionObserver, but I am still not fully comfortable with modules and build tooling like Vite and Webpack.',
+                'PHP I place at "comfortable", and MySQL is where I keep going deeper. In the end every language is a tool; what matters is knowing which one to reach for at each layer.',
+            ],
+        ],
+    ],
+    [
+        'slug' => 'learning-languages-worth-it',
+        'date' => '2025-12-09',
+        'reading_minutes' => 6,
+        'tags' => ['یادگیری', 'Learning', 'Career'],
+        'title' => [
+            'fa' => 'یاد گرفتن چند زبان ارزشش را دارد؟',
+            'en' => 'Is learning several languages worth it?',
+        ],
+        'excerpt' => [
+            'fa' => 'عمق در یک زبان از سطحی یاد گرفتن ده زبان ارزشمندتر است؛ اما بلد بودن چند زبان دیدت را نسبت به مسئله باز می‌کند.',
+            'en' => 'Depth in one language is worth more than a shallow grasp of ten; but knowing several widens how you see a problem.',
+        ],
+        'body' => [
+            'fa' => [
+                'یک اشتباه رایج بین تازه‌کارها این است که فکر می‌کنند تعداد زبان‌هایی که در رزومه می‌نویسند مهم است. تجربه‌ی من خلاف این را نشان داد.',
+                'اولین زبانی که یاد می‌گیری سخت‌ترین است، چون هم‌زمان با مفاهیم بنیادی درگیر می‌شوی: متغیر، تابع، حلقه و منطق. زبان دوم و سوم بسیار سریع‌تر یاد گرفته می‌شوند، چون مفاهیم مشترک‌اند و فقط سینتکس عوض می‌شود.',
+                'ارزش یاد گرفتن چند زبان در چیز دیگری است: دیدگاه. وقتی یک مسئله را در دو پارادایم مختلف دیده باشی، راه‌حل بهتری پیدا می‌کنی. مثلاً بعد از کار با شیء‌گرایی در PHP، ساختار داده‌ها در JavaScript برایم واضح‌تر شد.',
+                'اما در نهایت، عمق مهم‌تر از تعداد است. بهتر است در یک زبان واقعاً مسلط شوی و یک پروژه‌ی کامل با آن تحویل بدهی، تا اینکه ده زبان را در سطح «سلام‌کردن» بلد باشی.',
+            ],
+            'en' => [
+                'A common mistake among beginners is thinking the number of languages on your résumé is what matters. My experience showed the opposite.',
+                'The first language you learn is the hardest, because you are fighting the fundamental concepts at the same time: variables, functions, loops and logic. The second and third are learned far faster, because the concepts are shared and only the syntax changes.',
+                'The real value of learning several languages lies elsewhere: perspective. Once you have seen a problem through two different paradigms, you find better solutions. After working with object orientation in PHP, for example, data structures in JavaScript became clearer to me.',
+                'But in the end, depth beats quantity. It is better to truly master one language and deliver a complete project with it than to know ten languages at a "hello" level.',
+            ],
+        ],
+    ],
+];
+
+/* ------------------------------------------------------------------
  * انتخاب زبان برای متن‌های دوزبانه
  * ------------------------------------------------------------------ */
 
@@ -420,6 +555,61 @@ function t_prose($key, array $vars = [])
     return fill_profile(t_str($key, $vars));
 }
 
+/**
+ * ساخت HTML امن برای متن یک نوشته بلاگ.
+ *
+ * هر بلوک می‌تواند یکی از این صورت‌ها باشد:
+ *   'list: آیتم یک | آیتم دو'  → فهرست گلوله‌ای
+ *   'code: خط اول\nخط دوم'      → بلوک کد
+ *   هر چیز دیگر                 → پاراگراف
+ * خروجی همیشه با e() امن‌سازی می‌شود.
+ */
+function render_post_body(array $blocks)
+{
+    $html = [];
+
+    foreach ($blocks as $block) {
+        $block = (string) $block;
+
+        if (strpos($block, 'list:') === 0) {
+            $items = array_filter(array_map('trim', explode('|', substr($block, 5))));
+            $html[] = '<ul class="post-list">';
+            foreach ($items as $item) {
+                $html[] = '<li>' . e($item) . '</li>';
+            }
+            $html[] = '</ul>';
+            continue;
+        }
+
+        if (strpos($block, 'code:') === 0) {
+            // داخل بلوک کد، دنباله \n به خط جدید واقعی تبدیل می‌شود
+            $code = str_replace('\\n', "\n", substr($block, 5));
+            $html[] = '<pre class="post-code"><code>'
+                . e($code)
+                . '</code></pre>';
+            continue;
+        }
+
+        $html[] = '<p>' . e($block) . '</p>';
+    }
+
+    return implode("\n", $html);
+}
+
+/** پیدا کردن یک نوشته بلاگ با slug */
+function find_post($slug)
+{
+    global $posts;
+
+    foreach ($posts as $post) {
+        if ($post['slug'] === $slug) {
+            return $post;
+        }
+    }
+
+    return null;
+}
+
 /* مقادیر آماده برای استفاده در صفحه‌ها (به زبان جاری) */
 $me = [
     'name' => $profile['name'][$lang] ?? $profile['name']['fa'],
@@ -432,4 +622,6 @@ $me = [
     'linkedin' => $profile['linkedin'],
     'telegram' => $profile['telegram'],
     'resume' => $profile['resume'],
+    'brand' => $profile['brand'],
+    'brand_url' => $profile['brand_url'],
 ];

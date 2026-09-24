@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $page_title = lang('contact_meta_title');
 $page_desc = lang('contact_meta_desc', ['name' => $me['name']]);
+$page_keywords = 'تماس با محمد جهانی, akyoweb, contact Mohammad Jahanii, استخدام توسعه‌دهنده, hire web developer';
 include __DIR__ . '/includes/header.php';
 ?>
 

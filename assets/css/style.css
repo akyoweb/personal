@@ -1829,3 +1829,166 @@ html[data-theme="dark"] .hero::before {
 .log-item::before {
   border-radius: var(--radius) var(--radius) 0 0;
 }
+/* ==========================================================================
+   وبلاگ
+   --------------------------------------------------------------------------
+   فهرست نوشته‌ها و صفحه‌ی یک نوشته. همه‌چیز با خصوصیت‌های منطقی نوشته
+   شده تا در فارسی (راست‌به‌چپ) و انگلیسی (چپ‌به‌راست) درست بماند.
+   ========================================================================== */
+
+.blog-updated {
+  margin-top: 10px;
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.post-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface, #fff);
+  transition: border-color .2s ease, transform .2s ease;
+}
+
+.post-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.post-card-link {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  padding: 26px 24px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.post-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.post-date {
+  font: 700 0.74rem/1 ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+
+.post-read {
+  font-size: 0.74rem;
+  color: var(--ink-faint);
+}
+
+.post-card h2 {
+  margin: 0;
+  font-size: 1.12rem;
+  line-height: 1.5;
+}
+
+.post-card p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+
+.post-card .tags {
+  margin-top: 4px;
+}
+
+.post-card .link-more {
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+/* ---------- صفحه یک نوشته ---------- */
+
+.post-wrap {
+  max-width: 760px;
+}
+
+.post-view .eyebrow {
+  margin-bottom: 10px;
+}
+
+.post-view h1 {
+  font-size: clamp(1.6rem, 3.6vw, 2.3rem);
+  line-height: 1.35;
+  margin-bottom: 14px;
+}
+
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+  padding-bottom: 22px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid var(--line);
+}
+
+.post-body p {
+  font-size: 1.02rem;
+  line-height: 1.95;
+  color: var(--ink-soft);
+  margin: 0 0 20px;
+}
+
+.post-list {
+  margin: 0 0 22px;
+  padding-inline-start: 20px;
+  color: var(--ink-soft);
+}
+
+.post-list li {
+  margin-bottom: 10px;
+  line-height: 1.9;
+}
+
+.post-code {
+  margin: 0 0 22px;
+  padding: 18px 20px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow-x: auto;
+  direction: ltr;
+  text-align: left;
+}
+
+.post-code code {
+  font: 0.86rem/1.7 ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color: var(--ink);
+  white-space: pre;
+}
+
+.post-tags {
+  margin-top: 26px;
+}
+
+.post-back {
+  margin-top: 30px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 780px) {
+  .post-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .post-card-link {
+    padding: 22px 20px;
+  }
+}

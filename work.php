@@ -5,6 +5,7 @@ require_once __DIR__ . '/includes/data.php';
 
 $page_title = lang('work_meta_title');
 $page_desc = lang('work_meta_desc', ['name' => $me['name']]);
+$page_keywords = 'محمد جهانی, akyoweb, نمونه‌کارها, portfolio, PHP, JavaScript, MySQL, پروژه‌های وب, web projects';
 include __DIR__ . '/includes/header.php';
 
 // فیلتر ساده بر اساس برچسب
