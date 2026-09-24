@@ -1388,14 +1388,18 @@ html[dir="ltr"] {
    ========================================================================== */
 
 .decisions {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
+  flex-direction: row;
+  direction: inherit;
   gap: 22px;
   border-top: 1px solid var(--line);
+  overflow-x: auto;
+  padding-bottom: 1px;
 }
 
 .decision {
   min-width: 0;
+  flex: 1 1 0;
   padding: 26px 20px;
   border: 1px solid var(--line);
   border-top: 0;
@@ -1515,9 +1519,6 @@ html[data-theme="dark"] .project-note {
     grid-template-columns: 1fr;
   }
 
-  .decisions {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 680px) {
@@ -1536,15 +1537,18 @@ html[data-theme="dark"] .project-note {
   }
 
   .decisions {
-    grid-template-columns: 1fr;
-    gap: 0;
+    gap: 14px;
+    padding-inline: 1px;
+    scroll-snap-type: inline proximity;
   }
 
   .decision {
-    grid-template-columns: 1fr;
-    gap: 6px;
-    padding: 22px 0;
-    border-inline: 0;
+    flex: 0 0 min(82vw, 340px);
+    grid-template-columns: 40px 1fr;
+    gap: 10px;
+    padding: 22px 16px;
+    border-inline: 1px solid var(--line);
+    scroll-snap-align: start;
   }
 
   .log-item {
