@@ -1228,7 +1228,11 @@ input[dir="ltr"],
   gap: 12px;
 }
 
-.header-inner > * {
+.header-inner > *,
+.grid > *,
+.decisions > *,
+.path > *,
+.log > * {
   min-width: 0;
 }
 
@@ -1254,8 +1258,23 @@ input[dir="ltr"],
  */
 html,
 body {
+  width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+}
+
+/* تغییر زبان جهت صفحه را عوض می‌کند؛ اندازه‌گیری عرض را مستقل نگه می‌داریم. */
+html[dir="rtl"],
+html[dir="ltr"] {
+  overflow-x: hidden;
+}
+
+.header-tools,
+.site-nav,
+.decisions,
+.path,
+.log {
+  min-width: 0;
 }
 
 /* عناصر تزئینی مطلق هرگز کلیک را نگیرند و از کادر بیرون نزنند */
@@ -1370,16 +1389,21 @@ body {
 
 .decisions {
   display: grid;
-  gap: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
   border-top: 1px solid var(--line);
 }
 
 .decision {
-  padding: 26px 0;
-  border-bottom: 1px solid var(--line);
+  min-width: 0;
+  padding: 26px 20px;
+  border: 1px solid var(--line);
+  border-top: 0;
   display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 20px;
+  grid-template-columns: 40px 1fr;
+  align-content: start;
+  gap: 14px;
+  background: var(--surface, #fff);
 }
 
 .decision-index {
@@ -1490,6 +1514,10 @@ html[data-theme="dark"] .project-note {
   .log {
     grid-template-columns: 1fr;
   }
+
+  .decisions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 680px) {
@@ -1507,10 +1535,16 @@ html[data-theme="dark"] .project-note {
     padding-inline-start: 4px;
   }
 
+  .decisions {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
   .decision {
     grid-template-columns: 1fr;
     gap: 6px;
     padding: 22px 0;
+    border-inline: 0;
   }
 
   .log-item {
