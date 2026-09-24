@@ -807,25 +807,42 @@ p {
   background: var(--bg-soft);
   padding: 30px 0;
   margin-top: 40px;
+  /* گرید ایمن: هیچ لینک بلندی (مثل ایمیل) صفحه را پهن‌تر نمی‌کند */
+  min-width: 0;
+}
+
+.site-footer .wrap {
+  min-width: 0;
 }
 
 .footer-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 14px 24px;
   flex-wrap: wrap;
+  min-width: 0;
 }
 
 .footer-links {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 8px 20px;
   font-size: 0.9rem;
+  min-width: 0;
 }
+
+.footer-links a {
+  /* ایمیل در گوشی‌های باریک بدون شکستن کلمه سرریز می‌کرد */
+  overflow-wrap: anywhere;
+}
+
 .footer-note {
   margin: 0;
   color: var(--ink-faint);
   font-size: 0.83rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 /* دکمه بازگشت به بالا */
@@ -928,6 +945,128 @@ p {
   }
   .brand-text {
     display: none;
+  }
+}
+
+/*
+ * گوشی‌های باریک (مثل Galaxy A55 با عرض حدود ۳۶۰ پیکسل):
+ * چند قاعده‌ای که در دسکتاپ لازم بودند اینجا جواب نمی‌دهند.
+ * هدف: هیچ عنصری بزرگ‌تر از عرض صفحه نباشد.
+ */
+@media (max-width: 560px) {
+  .wrap {
+    padding-inline: 16px;
+  }
+
+  .section {
+    padding: clamp(30px, 9vw, 44px) 0;
+  }
+
+  .grid {
+    gap: 16px;
+  }
+
+  .tile,
+  .hero-card,
+  .side-box,
+  .cta {
+    padding: 18px;
+  }
+
+  /* عنوان‌های بلند فارسی در موبایل مجبور به شکستن کلمه می‌شوند */
+  h1,
+  h2,
+  h3 {
+    overflow-wrap: break-word;
+  }
+
+  .wrap,
+  .prose,
+  .hero-copy,
+  .timeline-body,
+  .project-body,
+  .path-body {
+    min-width: 0;
+  }
+
+  .lead {
+    max-width: none;
+  }
+
+  /* دکمه‌ها در گوشی تمام‌عرض و قابل لمس می‌شوند */
+  .hero-actions {
+    gap: 10px;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .quick-facts {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    font-size: 0.88rem;
+  }
+
+  .steps li {
+    padding-inline-end: 38px;
+  }
+
+  .facts > div,
+  .contact-list li {
+    flex-wrap: wrap;
+    gap: 4px 12px;
+  }
+
+  .facts dd,
+  .contact-list a,
+  .contact-list strong {
+    overflow-wrap: anywhere;
+  }
+
+  .filters {
+    gap: 6px;
+  }
+
+  .form .btn {
+    width: 100%;
+  }
+
+  .site-nav {
+    padding-inline: 16px;
+  }
+
+  /* فاصله امن از لبه گوشی برای دکمه بازگشت به بالا */
+  .to-top {
+    bottom: 16px;
+    left: 16px;
+    width: 36px;
+    height: 36px;
+  }
+
+  html[dir="ltr"] .to-top {
+    left: auto;
+    right: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .header-tools {
+    gap: 4px;
+    margin-right: 4px;
+  }
+
+  .lang-toggle span[aria-hidden="true"] {
+    padding: 0 4px;
+    min-width: 22px;
+  }
+
+  .theme-toggle {
+    width: 34px;
+    height: 34px;
+    font-size: 0.95rem;
   }
 }
 
@@ -1385,47 +1524,60 @@ html[dir="ltr"] {
 
 /* ==========================================================================
    «چطور فکر می‌کنم» — تصمیم‌های فنی
+   --------------------------------------------------------------------------
+   روی دسکتاپ و موبایل، تصمیم‌ها کنار هم و در یک ردیف افقی می‌نشینند
+   (راست‌به‌چپ در فارسی، چپ‌به‌راست در انگلیسی) و در موبایل
+   به‌صورت افقی اسکرول می‌شوند — هرگز زیر هم نمی‌افتند.
    ========================================================================== */
 
 .decisions {
   display: flex;
   flex-direction: row;
   direction: inherit;
-  gap: 22px;
-  border-top: 1px solid var(--line);
+  gap: 20px;
+  margin: 0;
+  padding: 0 0 6px;
+  list-style: none;
   overflow-x: auto;
-  padding-bottom: 1px;
+  overflow-y: hidden;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
 }
 
 .decision {
   min-width: 0;
   flex: 1 1 0;
-  padding: 26px 20px;
+  padding: 24px 20px;
   border: 1px solid var(--line);
-  border-top: 0;
+  border-radius: var(--radius);
   display: grid;
-  grid-template-columns: 40px 1fr;
+  grid-template-columns: 34px minmax(0, 1fr);
   align-content: start;
-  gap: 14px;
+  gap: 6px 14px;
   background: var(--surface, #fff);
 }
 
 .decision-index {
-  font: 700 0.8rem/1.8 ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font: 700 0.78rem/1.7 ui-monospace, "SFMono-Regular", Menlo, monospace;
   color: var(--accent);
   letter-spacing: 0.08em;
 }
 
 .decision h3 {
-  margin: 0 0 8px;
-  font-size: 1.05rem;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  overflow-wrap: break-word;
 }
 
 .decision p {
+  grid-column: 2;
   margin: 0;
   color: var(--ink-soft);
-  font-size: 0.94rem;
-  max-width: 68ch;
+  font-size: 0.9rem;
+  line-height: 1.85;
+  overflow-wrap: break-word;
 }
 
 /* ==========================================================================
@@ -1518,9 +1670,9 @@ html[data-theme="dark"] .project-note {
   .log {
     grid-template-columns: 1fr;
   }
-
 }
 
+/* در موبایل کارت‌ها در یک ردیف می‌مانند و افقی کشیده می‌شوند */
 @media (max-width: 680px) {
   .path {
     grid-template-columns: 1fr;
@@ -1538,21 +1690,46 @@ html[data-theme="dark"] .project-note {
 
   .decisions {
     gap: 14px;
-    padding-inline: 1px;
     scroll-snap-type: inline proximity;
   }
 
   .decision {
-    flex: 0 0 min(82vw, 340px);
-    grid-template-columns: 40px 1fr;
-    gap: 10px;
-    padding: 22px 16px;
-    border-inline: 1px solid var(--line);
+    flex: 0 0 auto;
+    width: min(84vw, 330px);
+    padding: 20px 16px;
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 4px 12px;
     scroll-snap-align: start;
+  }
+
+  .decision h3 {
+    font-size: 0.96rem;
+  }
+
+  .decision p {
+    font-size: 0.86rem;
+    line-height: 1.8;
   }
 
   .log-item {
     padding: 20px 18px;
+  }
+
+  /* پاورقی: لینک‌ها و متن زیر هم، بدون سرریز */
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .footer-links {
+    gap: 6px 16px;
+    font-size: 0.86rem;
+  }
+
+  .footer-note {
+    font-size: 0.78rem;
+    line-height: 1.7;
   }
 }
 

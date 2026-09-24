@@ -141,8 +141,8 @@ $decisions = [
             'en' => 'Why this site has no framework',
         ],
         'body' => [
-            'fa' => 'می‌خواستم یاد بگیرم PHP خودش چطور کار می‌کند، نه اینکه Laravel چه دکمه‌ای دارد. بدون فریم‌ورک مجبور شدم خودم با نشست، توکن CSRF و مسیریابی درگیر شوم. حالا وقتی جایی از Laravel استفاده می‌کنم، می‌فهمم پشت صحنه چه خبر است.',
-            'en' => 'I wanted to learn how PHP itself works, not which button Laravel offers. Without a framework I had to deal with sessions, CSRF tokens and routing myself. Now when I use Laravel somewhere, I understand what is happening behind it.',
+            'fa' => 'می‌خواستم ببینم PHP خودش چطور کار می‌کند، نه اینکه Laravel چه دکمه‌ای دارد. بدون فریم‌ورک خودم با نشست، توکن CSRF و مسیریابی درگیر شدم — و حالا می‌فهمم پشت صحنه چه خبر است.',
+            'en' => 'I wanted to see how PHP itself works, not which button Laravel offers. Without a framework I dealt with sessions, CSRF tokens and routing myself — so I now understand what happens behind the scenes.',
         ],
     ],
     [
@@ -151,8 +151,8 @@ $decisions = [
             'en' => 'Why the content lives in data.php',
         ],
         'body' => [
-            'fa' => 'اول متن‌ها را داخل HTML نوشتم. بعد که خواستم همان جمله را در دو جا استفاده کنم، مجبور شدم دو جا ویرایشش کنم و یکی را فراموش کردم. حالا محتوا در یک آرایه است و قالب فقط آن را نمایش می‌دهد. این تصمیم بعداً اضافه کردن زبان انگلیسی را هم ساده کرد.',
-            'en' => 'I wrote the copy straight into the HTML at first. Then I needed the same sentence in two places, edited both, and forgot one. Now the content sits in one array and the template only renders it. That decision also made adding English much easier later.',
+            'fa' => 'اول متن را داخل HTML نوشتم. بعد همان جمله را در دو جا لازم داشتم، یکی را ویرایش کردم و یکی را فراموش کردم. حالا محتوا در یک آرایه است و قالب فقط آن را نمایش می‌دهد.',
+            'en' => 'I wrote the copy inside the HTML first. Later I needed the same sentence twice, edited one and forgot the other. Now the content lives in one array and the template only renders it.',
         ],
     ],
     [
@@ -161,8 +161,8 @@ $decisions = [
             'en' => 'Why messages are stored outside the web root',
         ],
         'body' => [
-            'fa' => 'اول پیام‌ها را در پوشه storage داخل سایت ذخیره کردم. بعد به این فکر افتادم که اگر تنظیمات وب‌سرور یک روز عوض شود، کسی می‌تواند آدرس فایل را بزند و همه پیام‌ها را بخواند. مسیر را به بیرون از پوشه وب منتقل کردم. با یک تغییر کوچک، یک ریسک واقعی حذف شد.',
-            'en' => 'I stored messages in a storage folder inside the site at first. Then I realised that if the web server config ever changed, anyone could hit the file URL and read every message. I moved the path outside the web root. A small change removed a real risk.',
+            'fa' => 'پیام‌ها را اول داخل پوشه سایت ذخیره می‌کردم. اگر تنظیمات وب‌سرور یک روز عوض شود، هر کسی می‌تواند آدرس فایل را بزند و همه پیام‌ها را بخواند. مسیر را بیرون از پوشه وب بردم.',
+            'en' => 'I first stored messages in a folder inside the site. If the web server config ever changed, anyone could hit the file URL and read every message. I moved the path outside the web root.',
         ],
     ],
 ];
