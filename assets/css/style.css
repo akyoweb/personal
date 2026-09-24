@@ -321,13 +321,14 @@ p {
 
 .card-list li {
   position: relative;
-  padding-right: 18px;
+  /* منطقی نوشته شده تا در حالت انگلیسی (چپ‌به‌راست) خودکار به سمت چپ برود */
+  padding-inline-start: 18px;
   margin-bottom: 8px;
 }
 .card-list li::before {
   content: "";
   position: absolute;
-  right: 4px;
+  inset-inline-start: 4px;
   top: 0.68em;
   width: 6px;
   height: 6px;
