@@ -445,27 +445,29 @@ p {
 .steps li {
   counter-increment: step;
   position: relative;
-  padding: 0 46px 22px 0;
-  border-right: 1px solid var(--line);
-  margin-right: 15px;
+  /* خصوصیت‌های منطقی: در فارسی راست، در انگلیسی چپ */
+  padding-block: 0 22px;
+  padding-inline: 0 46px;
+  border-inline-end: 1px solid var(--line);
+  margin-inline-end: 15px;
   color: var(--ink-soft);
   font-size: 0.94rem;
 }
 
 .steps li:last-child {
-  border-right-color: transparent;
+  border-inline-end-color: transparent;
   padding-bottom: 0;
 }
 
 .steps li::before {
   content: counter(step);
   position: absolute;
-  right: -15px;
+  inset-inline-end: -15px;
   top: 0;
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: #fff;
+  background: var(--surface, #fff);
   border: 1px solid var(--line);
   color: var(--accent);
   display: grid;
